@@ -7,7 +7,7 @@ test('renders AnimalForm', () => {
     render(<AnimalForm />);
 })
 
-test('renders AnimalForm', () => {
+test('renders AnimalForm', async () => {
     render(<AnimalForm />);
 
     const speciesInput = screen.getByLabelText(/species/i);
@@ -25,4 +25,6 @@ test('renders AnimalForm', () => {
     const button = screen.getByRole("button", { name: /submit!/i});
     fireEvent.click(button);
 
+    const newAnimal = await screen.findByText(/dog/i);
+    expect(newAnimal).toHaveTextContent(/dog/);
 })
